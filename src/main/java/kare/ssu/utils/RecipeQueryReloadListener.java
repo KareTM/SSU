@@ -2,7 +2,7 @@ package kare.ssu.utils;
 
 import kare.ssu.RecipeQuery;
 import net.fabricmc.fabric.api.resource.v1.ResourceLoader;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
@@ -12,8 +12,8 @@ public class RecipeQueryReloadListener implements ResourceManagerReloadListener 
         ResourceLoader.get(PackType.CLIENT_RESOURCES).registerReloader(getResourceLocation(), new RecipeQueryReloadListener());
     }
 
-    public static ResourceLocation getResourceLocation() {
-        return ResourceLocation.fromNamespaceAndPath("ssu", "data/recipe_chains");
+    public static Identifier getResourceLocation() {
+        return Identifier.fromNamespaceAndPath("ssu", "data/recipe_chains");
     }
 
     @Override

@@ -10,7 +10,7 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.inventory.Slot;
 import org.lwjgl.glfw.GLFW;
 import org.slf4j.Logger;
@@ -136,7 +136,7 @@ public class RecipeQueryClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         client = Minecraft.getInstance();
-        KeyMapping.Category recipequery = KeyMapping.Category.register(ResourceLocation.fromNamespaceAndPath("recipequery", "keys"));
+        KeyMapping.Category recipequery = KeyMapping.Category.register(Identifier.fromNamespaceAndPath("recipequery", "keys"));
 
         // The translation key of the keybinding's name
         // The type of the keybinding, KEYSYM for keyboard, MOUSE for mouse.
