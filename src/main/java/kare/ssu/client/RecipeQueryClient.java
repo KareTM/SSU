@@ -16,6 +16,9 @@ import org.lwjgl.glfw.GLFW;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import net.minecraft.client.resources.sounds.SimpleSoundInstance;
+import net.minecraft.sounds.SoundEvents;
+
 import java.util.Map;
 import java.util.Objects;
 import java.util.regex.Pattern;
@@ -79,18 +82,17 @@ public class RecipeQueryClient implements ClientModInitializer {
         assert client.player != null;
         var customData = slot.getItem().get(DataComponents.CUSTOM_DATA);
         if (customData == null) {
-            client.getChatListener().handleSystemMessage(Component.literal("This item has no data and cannot be checked.").withStyle(ChatFormatting.BOLD, ChatFormatting.RED, ChatFormatting.ITALIC), false);
             return;
         }
         var ID = Objects.requireNonNull(customData).copyTag().get("id");
         if (ID == null) {
-            client.getChatListener().handleSystemMessage(Component.literal("This item has no ID and cannot be checked.").withStyle(ChatFormatting.BOLD, ChatFormatting.RED, ChatFormatting.ITALIC), false);
+            sendErrorMessage(client, "This item has no ID.");
             return;
         }
         String id_string = ID.toString().replace("\"", "");
         var chains = RecipeQuery.INSTANCE.getChains();
         if (chains == null) {
-            client.getChatListener().handleSystemMessage(Component.literal("Crafting chains data missing, try reloading your client (F3 + T). If it persists, report this issue.").withStyle(ChatFormatting.BOLD, ChatFormatting.RED, ChatFormatting.ITALIC), false);
+            sendErrorMessage(client, "Crafting chains data missing, try reloading your client (F3 + T). If it persists, report this issue.");
             return;
         }
 
@@ -114,10 +116,17 @@ public class RecipeQueryClient implements ClientModInitializer {
             }
         }
 
-        client.getChatListener().handleSystemMessage(Component.literal("This item has no enchanted/upgraded version.").withStyle(ChatFormatting.BOLD, ChatFormatting.RED, ChatFormatting.ITALIC), false);
+        sendErrorMessage(client, "This item has no enchanted/upgraded version.");
     }
 
-
+    private static void sendErrorMessage(Minecraft client, String message) {
+        client.getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.ENDERMAN_TELEPORT,1.0f,0.5f));
+        client.getChatListener().handleSystemMessage(
+            Component.literal("[Supercraft] ").withStyle(ChatFormatting.GOLD).append(
+                Component.literal(message).withStyle(ChatFormatting.RED)
+            ), false
+        );
+    }
 
     public static String doSubstitution(String input) {
         if (input.contains("Gemstone")) {

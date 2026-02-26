@@ -23,7 +23,6 @@ public abstract class ScreenMixin {
             this.onClose();
             RecipeQueryClient.onRecipeQueryKeyPressed(hoveredSlot);
         } else if (RecipeQueryClient.enchantedKey.matches(keyEvent) && hoveredSlot != null) {
-            this.onClose();
             RecipeQueryClient.onViewEnchanted(hoveredSlot);
         }
     }
