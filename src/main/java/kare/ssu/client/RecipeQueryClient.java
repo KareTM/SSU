@@ -7,7 +7,7 @@ import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
@@ -142,14 +142,14 @@ public class RecipeQueryClient implements ClientModInitializer {
         // The type of the keybinding, KEYSYM for keyboard, MOUSE for mouse.
         // The keycode of the key
         // The translation key of the keybinding's category.
-         queryKey = KeyBindingHelper.registerKeyBinding(new KeyMapping(
+         queryKey = KeyMappingHelper.registerKeyMapping(new KeyMapping(
                 "key.recipequery.query", // The translation key of the keybinding's name
                 InputConstants.Type.KEYSYM, // The type of the keybinding, KEYSYM for keyboard, MOUSE for mouse.
                 GLFW.GLFW_KEY_R, // The keycode of the key
                 recipequery // The translation key of the keybinding's category.
         ));
 
-        enchantedKey = KeyBindingHelper.registerKeyBinding(new KeyMapping(
+        enchantedKey = KeyMappingHelper.registerKeyMapping(new KeyMapping(
                 "key.recipequery.viewenchanted", // The translation key of the keybinding's name
                 InputConstants.Type.KEYSYM, // The type of the keybinding, KEYSYM for keyboard, MOUSE for mouse.
                 GLFW.GLFW_KEY_Y, // The keycode of the key

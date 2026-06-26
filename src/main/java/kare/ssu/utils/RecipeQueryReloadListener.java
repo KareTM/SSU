@@ -9,7 +9,7 @@ import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
 
 public class RecipeQueryReloadListener implements ResourceManagerReloadListener {
     public static void register() {
-        ResourceLoader.get(PackType.CLIENT_RESOURCES).registerReloader(getResourceLocation(), new RecipeQueryReloadListener());
+        ResourceLoader.get(PackType.CLIENT_RESOURCES).registerReloadListener(getResourceLocation(), new RecipeQueryReloadListener());
     }
 
     public static Identifier getResourceLocation() {

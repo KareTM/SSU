@@ -13,3 +13,5 @@ remappedSrc/
 *.iml
 *.ipr
 *.iws
+
+.vscode/
