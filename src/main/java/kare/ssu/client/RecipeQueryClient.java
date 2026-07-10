@@ -122,7 +122,7 @@ public class RecipeQueryClient implements ClientModInitializer {
     private static void sendErrorMessage(Minecraft client, String message) {
         client.getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.ENDERMAN_TELEPORT,1.0f,0.5f));
         client.getChatListener().handleSystemMessage(
-            Component.literal("[Supercraft] ").withStyle(ChatFormatting.GOLD).append(
+            Component.literal("[SSU] ").withStyle(ChatFormatting.GOLD).append(
                 Component.literal(message).withStyle(ChatFormatting.RED)
             ), false
         );
